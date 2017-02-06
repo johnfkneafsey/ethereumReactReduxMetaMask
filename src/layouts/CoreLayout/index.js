@@ -1,3 +1,12 @@
 import CoreLayout from './CoreLayout'
+import { connect } from 'react-redux'
+import { web3Connect } from '../../store/web3Reducer'
 
-export default CoreLayout
+const mapDispatchToProps = {
+  web3Connect
+}
+
+const mapStateToProps = (state) => ({
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CoreLayout)

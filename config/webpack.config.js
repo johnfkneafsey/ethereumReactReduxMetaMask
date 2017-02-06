@@ -1,4 +1,5 @@
 const argv = require('yargs').argv
+const path = require('path')
 const webpack = require('webpack')
 const cssnano = require('cssnano')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -17,7 +18,10 @@ const webpackConfig = {
   devtool : project.compiler_devtool,
   resolve : {
     root       : project.paths.client(),
-    extensions : ['', '.js', '.jsx', '.json']
+    extensions : ['', '.js', '.jsx', '.json'],
+    alias: {
+      contracts: path.resolve('contracts')
+    }
   },
   module : {}
 }
@@ -100,8 +104,7 @@ if (__DEV__) {
         dead_code : true,
         warnings  : false
       }
-    }),
-    new webpack.optimize.AggressiveMergingPlugin()
+    })
   )
 }
 
@@ -137,7 +140,7 @@ const BASE_CSS_LOADER = 'css?sourceMap&-minimize'
 
 webpackConfig.module.loaders.push({
   test    : /\.scss$/,
-  exclude : null,
+  exclude: /flexboxgrid/, // so we have to exclude it
   loaders : [
     'style',
     BASE_CSS_LOADER,
@@ -147,12 +150,18 @@ webpackConfig.module.loaders.push({
 })
 webpackConfig.module.loaders.push({
   test    : /\.css$/,
-  exclude : null,
+  exclude: /flexboxgrid/, // so we have to exclude it
   loaders : [
     'style',
     BASE_CSS_LOADER,
     'postcss'
   ]
+})
+
+webpackConfig.module.loaders.push({
+  test: /\.css$/,
+  loader: 'style!css?modules',
+  include: /flexboxgrid/
 })
 
 webpackConfig.sassLoader = {
@@ -186,7 +195,8 @@ webpackConfig.module.loaders.push(
   { test: /\.ttf(\?.*)?$/,   loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/octet-stream' },
   { test: /\.eot(\?.*)?$/,   loader: 'file?prefix=fonts/&name=[path][name].[ext]' },
   { test: /\.svg(\?.*)?$/,   loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=image/svg+xml' },
-  { test: /\.(png|jpg)$/,    loader: 'url?limit=8192' }
+  { test: /\.(png|jpg)$/,    loader: 'url?limit=8192' },
+  { test: /\.sol/,           loader: 'truffle-solidity' }
 )
 /* eslint-enable */
 

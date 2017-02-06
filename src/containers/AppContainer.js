@@ -8,13 +8,8 @@ class AppContainer extends Component {
     store  : PropTypes.object.isRequired
   }
 
-  shouldComponentUpdate () {
-    return false
-  }
-
   render () {
     const { routes, store } = this.props
-
     return (
       <Provider store={store}>
         <div style={{ height: '100%' }}>

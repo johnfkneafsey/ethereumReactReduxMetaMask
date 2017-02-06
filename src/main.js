@@ -2,6 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import createStore from './store/createStore'
 import AppContainer from './containers/AppContainer'
+import injectTapEventPlugin from 'react-tap-event-plugin'
+injectTapEventPlugin() // http://stackoverflow.com/a/34015469/988941
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 // ========================================================
 // Store Instantiation
@@ -18,7 +21,9 @@ let render = () => {
   const routes = require('./routes/index').default(store)
 
   ReactDOM.render(
-    <AppContainer store={store} routes={routes} />,
+    <MuiThemeProvider>
+      <AppContainer store={store} routes={routes} />
+    </MuiThemeProvider>,
     MOUNT_NODE
   )
 }

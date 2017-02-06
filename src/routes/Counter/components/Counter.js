@@ -1,16 +1,17 @@
 import React from 'react'
 
+import RaisedButton from 'material-ui/RaisedButton'
+import { Row } from 'react-flexbox-grid/lib/index'
+
 export const Counter = (props) => (
-  <div style={{ margin: '0 auto' }} >
-    <h2>Counter: {props.counter}</h2>
-    <button className='btn btn-default' onClick={props.increment}>
-      Increment
-    </button>
-    {' '}
-    <button className='btn btn-default' onClick={props.doubleAsync}>
-      Double (Async)
-    </button>
-  </div>
+  <Row center='xs'>
+    <div >
+      <h2>Counter: {props.counter}</h2>
+      <RaisedButton label='Increment' onClick={props.increment} />
+      {' '}
+      <RaisedButton label='Double (Async)' onClick={props.doubleAsync} />
+    </div>
+  </Row>
 )
 
 Counter.propTypes = {

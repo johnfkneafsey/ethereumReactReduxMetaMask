@@ -13,7 +13,7 @@ function shallowRenderWithProps (props = {}) {
   return shallowRender(<CoreLayout {...props} />)
 }
 
-describe('(Layout) Core', function () {
+describe.skip('(Layout) Core', function () {
   let _component
   let _props
   let _child
