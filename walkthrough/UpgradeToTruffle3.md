@@ -1,12 +1,12 @@
 ### Integrating truffle 3 into an existing truffle 2 project
 
-I [created](https://github.com/sogoiii/web3-react-redux-starter-kit) a fork of [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit) and added web3 and truffle to the mix. Recently truffle was upgraded to [version 3](http://truffleframework.com/tutorials/upgrading-from-truffle-2-to-3), and broke the flow. Which is cool because now its nicer to work with. It no longer renders a `.js` file, but rather creates a `json` file. It also updated the configuration file. Follow along and see how I updated the previous repo to use truffle 3.
+I [created](https://github.com/sogoiii/web3-react-redux-starter-kit) a fork of [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit) and added web3 and truffle to the mix. Recently truffle was upgraded to [version 3](http://truffleframework.com/tutorials/upgrading-from-truffle-2-to-3), and broke the flow. Which is cool because now its nicer to work with. It no longer renders a `.js` file, but rather creates a `json` file and they updated the configuration file. Follow along and see how I updated the [previous repo](https://github.com/sogoiii/web3-react-redux-starter-kit) to use truffle 3.
 
 ---
 
 ### Updating the configuration file
 
-The `rpc` key was removed and a new key `networks` houses all possible environments. To add a staging or local target, I simply create a new object. Looking at the older `truffle.js` file, this was an easy update. I removed the `rpc` key and created a `networks.development` object.
+The `rpc` key was removed and a new key `networks` houses all possible environments. To add a staging or local target, simply create a new object. [Looking at the older](https://github.com/sogoiii/web3-react-redux-starter-kit/blob/with_truffle_2/truffle.js) `truffle.js` file, this was an easy update. I removed the `rpc` key and created a `networks.development` object.
 
 
 ```js
@@ -31,14 +31,14 @@ module.exports = {
 }
 ```
 
-In `src/store/web3Reducer.js` I require in `truffle.js`, so I only had to [update the path of keys](https://github.com/sogoiii/web3-react-redux-starter-kit/commit/a6eb6cf9c1652f5bbec78ab4f7e16ef92f648b38#diff-21d4e70b0fc7dbc01cc6287bc59a066a).
+In `src/store/web3Reducer.js` I require `truffle.js` and use a few keys. I only had to [update the path of keys](https://github.com/sogoiii/web3-react-redux-starter-kit/commit/a6eb6cf9c1652f5bbec78ab4f7e16ef92f648b38#diff-21d4e70b0fc7dbc01cc6287bc59a066a) to the node.
 
 
 ### Updating truffle-solidity-loader
 
-The current master branch on [truffle-solidity-loader](https://github.com/ConsenSys/truffle-solidity-loader) does not have my [pull request](https://github.com/ConsenSys/truffle-solidity-loader/pull/10) from [my branch](https://github.com/sogoiii/truffle-solidity-loader/tree/update_truffle_3). But thats ok, npm allows for direct linking into a github repo!
+The current master branch on [truffle-solidity-loader](https://github.com/ConsenSys/truffle-solidity-loader) does not have my [pull request](https://github.com/ConsenSys/truffle-solidity-loader/pull/10) from [my branch](https://github.com/sogoiii/truffle-solidity-loader/tree/update_truffle_3). But thats ok, npm allows for direct linking into a github repo! I modified the following in `package.json`.
 
-```js
+```json
 {
   "devDependencies": {
     "truffle-solidity-loader": "git+https://github.com/sogoiii/truffle-solidity-loader.git#1f1e213d52f033b6863218307b8968ae68220fe1",
@@ -119,9 +119,11 @@ export const sendCoin = ({ amount, address }) => {
 }
 ```
 
-I had to incorporate the promisified `deployed` method and and create my own chain. Given what we were doing, I had to create a few state variables.
+I incorporate the promisified `deployed` method and added it to the chain. This forced me to create a few state variables.
 
 
 ## Conclusion
 
-Overall upgrading to truffle 3 was relatively easy. I had to modify anything that requires `truffle.js`. Modify the assumption anything that `imports` a `.sol` file and wrap it around `truffle-contract`. The big work is really being done by `truffle-solidity-loader` to return a `json` file. Overal the new interface is very nice.
+Overall upgrading to truffle 3 was relatively easy. I referenced `truffle.js` in a file, and so had to change a few keys. Then I had to update any file that included a `.sol` file. Integrating with `truffle-solidity-loader`, I could include it and pass the object into `truffle-contract`. Then update how to get the contract and viola.
+
+Please refrence the full [migration guide](http://truffleframework.com/tutorials/upgrading-from-truffle-2-to-3) for you migration needs.
