@@ -69,10 +69,10 @@ export const getBalance = ({ account }) => {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       getMetaCoin({ getState })
-      .then( instance => {
+      .then(instance => {
         return instance
       })
-      .then( meta => {
+      .then(meta => {
         return meta.getBalance.call(account, { from: account })
       })
       .then(function (value) {
