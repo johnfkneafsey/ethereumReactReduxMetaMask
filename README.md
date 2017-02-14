@@ -3,6 +3,8 @@
 ## NOTE:
 Look at the walkthrough directory to see how web3 was integrated into the original repo.
 
+[Blog Post 1](https://medium.com/@angellopozo/a-web3-redux-react-starter-kit-walkthrough-1fff0e9c3c36#.hkqj1eqy5): A Web3-redux-react-starter-kit Walkthrough
+[Blog Post 2](https://medium.com/@angellopozo/upgrading-to-truffle-3-from-an-existing-truffle-2-project-c0f030b681d3#.g4x4a8lku): Upgrading to truffle 3 from an existing truffle 2 project
 
 [![Join the chat at https://gitter.im/davezuko/react-redux-starter-kit](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/davezuko/react-redux-starter-kit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/davezuko/react-redux-starter-kit.svg?branch=master)](https://travis-ci.org/davezuko/react-redux-starter-kit?branch=master)
