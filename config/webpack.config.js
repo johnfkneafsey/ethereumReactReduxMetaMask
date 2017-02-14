@@ -195,9 +195,14 @@ webpackConfig.module.loaders.push(
   { test: /\.ttf(\?.*)?$/,   loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/octet-stream' },
   { test: /\.eot(\?.*)?$/,   loader: 'file?prefix=fonts/&name=[path][name].[ext]' },
   { test: /\.svg(\?.*)?$/,   loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=image/svg+xml' },
-  { test: /\.(png|jpg)$/,    loader: 'url?limit=8192' },
-  { test: /\.sol/,           loader: 'truffle-solidity' }
+  { test: /\.(png|jpg)$/,    loader: 'url?limit=8192' }
 )
+
+webpackConfig.module.loaders.push({
+  test: /\.sol/,
+  loaders: ['json-loader', 'truffle-solidity-loader?migrations_directory=' + path.resolve(__dirname, '../migrations') + '&network=development']
+})
+
 /* eslint-enable */
 
 // ------------------------------------

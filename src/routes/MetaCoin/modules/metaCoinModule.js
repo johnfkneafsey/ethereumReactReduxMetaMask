@@ -1,4 +1,6 @@
-import MetaCoin from '../../../../contracts/MetaCoin.sol'
+import MetaCoinArtifact from '../../../../contracts/MetaCoin.sol'
+import contract from 'truffle-contract'
+const MetaCoin = contract(MetaCoinArtifact)
 
 // ------------------------------------
 // Constants
@@ -26,24 +28,27 @@ const getDefaultAccount = ({ getState }) => {
 export const sendCoin = ({ amount, address }) => {
   return (dispatch, getState) => {
     return new Promise((resolve) => {
-      let meta = getMetaCoin({ getState })
-      let from = getDefaultAccount({ getState })
-
-      meta.sendCoin(address, amount, { from })
-          .then(() => {
-            return meta.getBalance.call(from, { from })
+      let meta = null
+      let from = null
+      getMetaCoin({ getState })
+        .then(instance => {
+          meta = instance
+          from = getDefaultAccount({ getState })
+          return meta.sendCoin(address, amount, { from })
+        })
+        .then(() => {
+          return meta.getBalance.call(from, { from })
+        })
+        .then(value => {
+          dispatch({
+            type: SET_BALANCE,
+            payload: { value: value.valueOf() }
           })
-          .then(value => {
-            dispatch({
-              type: SET_BALANCE,
-
-              payload: { value: value.valueOf() }
-            })
-            resolve()
-          })
-          .catch(e => {
-            console.log(e)
-          })
+          resolve()
+        })
+        .catch(e => {
+          console.log(e)
+        })
     })
   }
 }
@@ -63,18 +68,23 @@ export const getBalanceInEth = () => {
 export const getBalance = ({ account }) => {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
-      let meta = getMetaCoin({ getState })
-      meta.getBalance.call(account, { from: account })
-        .then(function (value) {
-          dispatch({
-            type: SET_BALANCE,
-            payload: { account, value: value.valueOf() }
-          })
-          resolve()
-        }).catch(function (e) {
-          console.log(e)
-          reject()
+      getMetaCoin({ getState })
+      .then( instance => {
+        return instance
+      })
+      .then( meta => {
+        return meta.getBalance.call(account, { from: account })
+      })
+      .then(function (value) {
+        dispatch({
+          type: SET_BALANCE,
+          payload: { account, value: value.valueOf() }
         })
+        resolve()
+      }).catch(function (e) {
+        console.log(e)
+        reject()
+      })
     })
   }
 }

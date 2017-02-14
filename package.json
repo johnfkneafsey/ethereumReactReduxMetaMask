@@ -104,6 +104,7 @@
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
     "react-flexbox-grid": "^0.10.2",
+    "react-pure-grid": "^2.1.1",
     "react-redux": "^5.0.1",
     "react-router": "^3.0.0",
     "react-tap-event-plugin": "^2.0.1",
@@ -114,6 +115,7 @@
     "rimraf": "^2.5.4",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
+    "truffle-contract": "^1.1.10",
     "url-loader": "^0.5.6",
     "web3": "^0.18.2",
     "webpack": "^1.12.14",
@@ -149,7 +151,7 @@
     "redbox-react": "^1.2.10",
     "sinon": "^1.17.5",
     "sinon-chai": "^2.8.0",
-    "truffle-solidity-loader": "^0.0.8",
+    "truffle-solidity-loader": "git+https://github.com/sogoiii/truffle-solidity-loader.git#1f1e213d52f033b6863218307b8968ae68220fe1",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.12.2"
   }

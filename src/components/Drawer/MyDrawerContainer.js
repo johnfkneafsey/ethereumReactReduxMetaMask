@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { toggleDrawer } from './MyDrawermodule'
+import { toggleDrawer } from './MyDrawerModule'
 
 import MyDrawer from './MyDrawerComponent'
 
