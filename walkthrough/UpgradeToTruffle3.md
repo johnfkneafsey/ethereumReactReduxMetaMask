@@ -1,6 +1,6 @@
 ### Integrating truffle 3 into an existing truffle 2 project
 
-I [created](https://github.com/sogoiii/web3-react-redux-starter-kit) a fork of XREPO and added web3 and truffle to the mix. Recently truffle was upgraded to [version 3](http://truffleframework.com/tutorials/upgrading-from-truffle-2-to-3), and broke the flow. Which is cool because now its nicer to work with. It no longer renders a `.js` file, but rather creates a `json` file. It also updated the configuration file. Follow along and see how I updated the previous repo to use truffle 3.
+I [created](https://github.com/sogoiii/web3-react-redux-starter-kit) a fork of [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit) and added web3 and truffle to the mix. Recently truffle was upgraded to [version 3](http://truffleframework.com/tutorials/upgrading-from-truffle-2-to-3), and broke the flow. Which is cool because now its nicer to work with. It no longer renders a `.js` file, but rather creates a `json` file. It also updated the configuration file. Follow along and see how I updated the previous repo to use truffle 3.
 
 ---
 
