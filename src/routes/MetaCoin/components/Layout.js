@@ -4,7 +4,6 @@ import { Row, Col } from 'react-flexbox-grid/lib/index'
 import Header from '../containers/HeaderContainer'
 import CoinCount from '../containers/CoinCountContainer'
 import SendCoin from '../containers/SendCoinContainer'
-import MemberDapps from './MemberDapps';
 
 export class Layout extends Component {
 
@@ -20,7 +19,6 @@ export class Layout extends Component {
         <Row center='xs'><Header /></Row>
         <Row center='xs'><CoinCount /></Row>
         <Row center='xs'><SendCoin /></Row>
-        <Row center='xs'><MemberDapps /></Row>
       </Col>
     )
   }

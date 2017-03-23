@@ -1,7 +1,5 @@
 import React from 'react'
 
-console.log('logging web3', web3);
-
 export const Header = () => {
   return (
     <div>
