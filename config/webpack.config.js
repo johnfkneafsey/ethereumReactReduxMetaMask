@@ -200,7 +200,7 @@ webpackConfig.module.loaders.push(
 
 webpackConfig.module.loaders.push({
   test: /\.sol/,
-  loaders: ['json-loader', 'truffle-solidity-loader?migrations_directory=' + path.resolve(__dirname, '../migrations') + '&network=development']
+  loaders: ['json-loader', 'truffle-solidity-loader?migrations_directory=' + path.resolve(__dirname, '../migrations') + '&network=development&contracts_build_directory=' + path.resolve(__dirname, '../dist/contracts') ]
 })
 
 /* eslint-enable */
